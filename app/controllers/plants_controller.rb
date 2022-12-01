@@ -26,6 +26,15 @@ class PlantsController < ApplicationController
       render json: {error: "Plant not found"}, status: :not_found
     end
   end
+  def destroy
+    bird = Plant.find_by(id: params[:id])
+    if bird
+      bird.destroy
+      head :no_content
+    else
+      render json: {error: "Bird not found"}, status: :not_found
+    end
+  end
 
   private
 
